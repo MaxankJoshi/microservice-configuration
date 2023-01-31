@@ -1,4 +1,4 @@
-package com.user.service.configuration;
+package com.rating.service.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -7,6 +7,7 @@ import com.rating.service.services.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class RatingController {
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/create")
     public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
         rating.setRatingId(sequenceGeneratorService.generateSequence(Rating.SEQUENCE_NAME));
@@ -43,6 +45,7 @@ public class RatingController {
         return ResponseEntity.ok(rating);
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_internal') || hasAuthority('Admin')")
     @GetMapping("/get/user/{userId}")
     public ResponseEntity<List<Rating>> getRatingsByUserId(@PathVariable("userId") Integer userId) {
         List<Rating> ratings = this.ratingService.getRatingsByUserId(userId);
