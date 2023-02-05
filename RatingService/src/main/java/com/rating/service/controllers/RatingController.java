@@ -22,7 +22,7 @@ public class RatingController {
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
-    @PreAuthorize("hasAuthority('Admin')")
+//    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/create")
     public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
         rating.setRatingId(sequenceGeneratorService.generateSequence(Rating.SEQUENCE_NAME));

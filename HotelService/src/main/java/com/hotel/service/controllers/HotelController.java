@@ -18,7 +18,7 @@ public class HotelController {
     @Autowired
     private HotelService hotelService;
 
-    @PreAuthorize("hasAuthority('Admin')")
+//    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/create")
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) {
         Hotel createdHotel = this.hotelService.createHotel(hotel);
